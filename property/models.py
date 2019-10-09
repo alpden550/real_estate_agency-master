@@ -36,6 +36,20 @@ class Flat(models.Model):
         verbose_name_plural = _('flats')
 
 
+class Owner(models.Model):
+    owner = models.CharField("ФИО владельца", max_length=200)
+    owners_phonenumber = models.CharField("Номер владельца", max_length=20)
+    owner_phone_pure = PhoneNumberField('Нормализованный номер владельца', blank=True, null=True)
+    flats = models.ManyToManyField(Flat, verbose_name='Квартиры в собственности', related_name='owners')
+
+    class Meta():
+        verbose_name = _('owner')
+        verbose_name_plural = _('owners')
+
+    def __str__(self):
+        return f'Владелец {self.owner}'
+
+
 class Complaint(models.Model):
     user = models.ForeignKey(User, verbose_name='Кто жаловался', on_delete=models.CASCADE, related_name='complaints')
     flat = models.ForeignKey(Flat, verbose_name='Квартира, на которую жаловались', on_delete=models.CASCADE, related_name='complaints')
