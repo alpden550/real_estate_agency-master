@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 14:31+0300\n"
+"POT-Creation-Date: 2019-10-09 19:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1195,10 +1195,18 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: property/models.py:30
+#: property/models.py:40
 msgid "flat"
 msgstr "Квартира"
 
-#: property/models.py:31
+#: property/models.py:41
 msgid "flats"
 msgstr "Квартиры"
+
+#: property/models.py:50
+msgid "complaint"
+msgstr "Жалоба"
+
+#: property/models.py:51
+msgid "complaints"
+msgstr "Жалобы"

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 
 class Flat(models.Model):
@@ -23,6 +24,7 @@ class Flat(models.Model):
     active = models.BooleanField("Активно-ли объявление", db_index=True)
     construction_year = models.IntegerField("Год постройки здания", null=True, blank=True, db_index=True)
     new_building = models.NullBooleanField('Новое здание')
+    likes = models.ManyToManyField(User, verbose_name='Кто лайкнул', blank=True, related_name='users')
 
     def __str__(self):
         return f"{self.town}, {self.address} ({self.price}р.)"
@@ -30,3 +32,16 @@ class Flat(models.Model):
     class Meta:
         verbose_name = _('flat')
         verbose_name_plural = _('flats')
+
+
+class Complaint(models.Model):
+    user = models.ForeignKey(User, verbose_name='Кто жаловался', on_delete=models.CASCADE, related_name='complaints')
+    flat = models.ForeignKey(Flat, verbose_name='Квартира, на которую жаловались', on_delete=models.CASCADE, related_name='complaints')
+    text = models.TextField('Текст жалобы')
+
+    class Meta():
+        verbose_name = _('complaint')
+        verbose_name_plural = _('complaints')
+
+    def __str__(self):
+        return f'Жалоба от {self.user} на квартиру {self.flat}'
