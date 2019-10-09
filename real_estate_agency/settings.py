@@ -103,6 +103,6 @@ DATABASES = {
     'default': dj_database_url.parse(os.getenv("DATABASE", "sqlite:///db.sqlite3")),
 }
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'property/locale'),)
 
 PHONENUMBER_DEFAULT_REGION = 'RU'
